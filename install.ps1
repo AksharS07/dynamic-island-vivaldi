@@ -102,7 +102,18 @@ Write-Host ""
 Write-Host "     Hover the pill at the top-center of the browser window" -ForegroundColor Gray
 Write-Host "     whenever media is playing to expand the controls." -ForegroundColor Gray
 
+# ══════════════════════════════════════════════════════════════
+#  Relaunch Vivaldi (Dropping Admin Privileges)
+# ══════════════════════════════════════════════════════════════
 Write-Host "Relaunching Vivaldi..." -ForegroundColor Cyan
-Start-Process -FilePath "explorer.exe" -ArgumentList ""\vivaldi.exe""
+
+# Ensure we extract the pure directory or executable path correctly
+if ($vivaldiExe -and (Test-Path $vivaldiExe)) {
+    # Call explorer.exe to spawn Vivaldi under your standard user token
+    Start-Process "explorer.exe" -ArgumentList "`"$vivaldiExe`""
+    Write-Host "Vivaldi successfully launched." -ForegroundColor Green
+} else {
+    Write-Warning "Could not automatically restart Vivaldi. Please open it manually."
+}
 
 
