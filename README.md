@@ -95,6 +95,24 @@ No build step, no dependencies, no account required.
 
 ---
 
+## Development
+
+The codebase is modularized in `src/` for easier maintenance:
+
+```
+src/
+  core.js           # Shared: time formatting, color extraction, lyrics API
+  styles.js         # CSS generation with configurability
+  ui.js              # DOM creation and controller logic
+  platform/
+    vivaldi.js      # Vivaldi-specific APIs
+    chrome-ext.js   # Chrome Extension messaging
+```
+
+Run `node build.js` to regenerate the output files. No bundler, no dependencies required.
+
+---
+
 ## Contributions
 
-If you are a frontend developer and the CSS makes you uncomfortable, pull requests are welcome. The codebase is functional but not particularly clean — it accumulated a lot of iterative patches during development and would benefit from someone who actually enjoys this kind of work.
+Pull requests welcome. The modular structure makes it much easier to work with now — CSS edits in `src/styles.js`, core logic in `src/core.js`, platform-specific code in `src/platform/`.
